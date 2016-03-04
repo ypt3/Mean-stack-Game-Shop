@@ -1,0 +1,11 @@
+{
+  "name": "Alan Store",
+  "version": "0.0.1",
+  "dependencies": {
+    "body-parser": "latest",
+    "express": "latest",
+    "moment": "^2.11.2",
+    "mongoose": "latest",
+    "mongoose-deep-populate": "latest"
+  }
+}

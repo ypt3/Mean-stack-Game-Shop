@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="col m9">
+    <h4>Orders</h4>
+  </div>
+  <div class="input-field col m3 right">
+    <input type="text" placeholder="search orders" ng-model="orderFilter">
+  </div>
+  <table class="centered highlight">
+    <thead>
+      <tr>
+        <th>Customer</th>
+        <th>Product</th>
+        <th>Quantity</th>
+        <th>Created Date</th>
+      </tr>
+    </thead>
+    <tbody ng-repeat="order in orders | filter: orderFilter | orderBy: 'created_at' track by $index">
+      <tr>
+        <td>{{order.customer_id.name}}</td>
+        <td>{{order.product_id.name}}</td>
+        <td>{{order.quantity}}</td>
+        <td>{{order.created_at | date: 'medium'}}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<h4>Add a new order</h4>
+<form>
+  <div class="row">
+    <div class="input-field col m6">
+      <select class="browser-default" ng-model="new_order.customer_id">
+        <option ng-repeat="customer in customers" value="{{customer._id}}">{{customer.name}}</option>
+      </select>
+    </div>
+  </div>
+  <div class="row">
+    <div class="input-field col m6">
+      <input type="number" placeholder="Qty" ng-model="new_order.quantity">
+    </div>
+    <div class="input-field col m3">
+      <select class="browser-default" ng-model="new_order.product_id">
+          <option ng-repeat="product in products" value="{{product._id}}">{{product.name}}</option>
+      </select>
+    </div>
+    <div class="input-field col m1">
+      <input type="submit" value="Add" ng-click="add()" class='btn'>
+    </div>
+  </div>
+</form>
