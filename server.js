@@ -5,6 +5,7 @@ var app = express();
 
 // set up a static fiile server that points to the 'client' directory
 // we will put all angular files inside of client
+app.set('port', (process.env.PORT || 8000));
 app.use(express.static(path.join(__dirname, './client')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: true}));
@@ -13,6 +14,6 @@ app.use(bodyParser.urlencoded({extended: true}));
 require('./server/config/mongoose.js');
 require('./server/config/routes.js')(app);
 
-app.listen(8000, function(){
-  console.log("Listening on port 8000");
+app.listen(app.get('port'), function(){
+ console.log("listening on port ", app.get('port'));
 });
